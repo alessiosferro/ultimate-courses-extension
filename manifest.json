@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "Ultimate Courses Screen Fix",
+  "version": "0.1",
+  "icons": {
+    "650": "favicon.ico"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://app.ultimatecourses.com/course/*"
+      ],
+      "js": [
+        "script.js"
+      ]
+    }
+  ]
+}
