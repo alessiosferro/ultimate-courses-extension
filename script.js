@@ -1,12 +1,12 @@
 const head = document.querySelector('head');
 const page = document.getElementById('page');
-const sidebar = document.querySelector('.uc-school-lesson-sidebar');
-const uc_scrollable = document.querySelector('.uc-scrollable');
-const active_lesson = document.querySelector('.is-active');
-const fake_anchor = document.createElement('a');
 const style = document.createElement('style');
+const sidebar = document.querySelector('.uc-school-lesson-sidebar');
+const fake_anchor = document.createElement('a');
+const active_lesson = document.querySelector('.is-active');
+const uc_scrollable = document.querySelector('.uc-scrollable');
 
-// new styles
+// The new styles.
 style.innerHTML = `
   .hide-scrollbar {
     overflow-y: hidden
@@ -29,23 +29,24 @@ style.innerHTML = `
   }
 `;
 
-// apends new styles
+// Appends new styles.
 head.appendChild(style);
 
-// hides the page scrollbar that causes a visual bug
+// Hides the page scrollbar that causes a visual bug.
 page.classList.add('hide-scrollbar');
 
-// removes the aside nav
+// Removes the aside nav.
 sidebar.removeChild(uc_scrollable);
 
-// appends again the element to apply the latest CSS classes
+// Appends again the element to apply the latest CSS classes.
 sidebar.appendChild(uc_scrollable);
 
-// adds the id active to the active lesson
+// Adds the 'active' id to the active lesson.
 active_lesson.id = 'active';
 
-// the new anchor elements now point to the active lesson
+// The new anchor elements now points to the active lesson.
 fake_anchor.href = "#active";
 
-// the clicks on the anchor element triggers the scrolling to the active element
+// The clicks on the anchor element triggers the 
+// scrolling to the active element.
 fake_anchor.click();
