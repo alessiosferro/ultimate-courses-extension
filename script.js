@@ -1,8 +1,12 @@
-const page = document.getElementById('page');
 const head = document.querySelector('head');
-
+const page = document.getElementById('page');
+const sidebar = document.querySelector('.uc-school-lesson-sidebar');
+const uc_scrollable = document.querySelector('.uc-scrollable');
+const active_lesson = document.querySelector('.is-active');
+const fake_anchor = document.createElement('a');
 const style = document.createElement('style');
-style.type = 'text/css';
+
+// new styles
 style.innerHTML = `
   .hide-scrollbar {
     overflow-y: hidden
@@ -15,38 +19,33 @@ style.innerHTML = `
   }
 
   div.uc-scrollable::-webkit-scrollbar {
-    width: 8px !important;
-    background-color: #212121 !important;
+    width: 5px;
+    background-color: #2b2b4c;
   }
 
   div.uc-scrollable::-webkit-scrollbar-thumb {
-    background: #2d2d2d;
+    background-color: #25b373;
+    border-radius: 3px;
   }
 `;
 
+// apends new styles
 head.appendChild(style);
 
+// hides the page scrollbar that causes a visual bug
 page.classList.add('hide-scrollbar');
 
-const sidebar = document.querySelector('.uc-school-lesson-sidebar');
-const uc_scrollable = document.querySelector('.uc-scrollable');
-
+// removes the aside nav
 sidebar.removeChild(uc_scrollable);
 
-const uc_scrollable_html = uc_scrollable.innerHTML;
-const new_uc_scrollable = document.createElement('div');
+// appends again the element to apply the latest CSS classes
+sidebar.appendChild(uc_scrollable);
 
-new_uc_scrollable.innerHTML = uc_scrollable_html;
-new_uc_scrollable.classList.add('uc-scrollable');
+// adds the id active to the active lesson
+active_lesson.id = 'active';
 
-new_uc_scrollable.scroll
+// the new anchor elements now point to the active lesson
+fake_anchor.href = "#active";
 
-sidebar.appendChild(new_uc_scrollable);
-
-const activeLesson = document.querySelector('.is-active');
-activeLesson.id = 'active';
-
-const fakeAnchor = document.createElement('a');
-fakeAnchor.href = "#active";
-
-fakeAnchor.click();
+// the clicks on the anchor element triggers the scrolling to the active element
+fake_anchor.click();
